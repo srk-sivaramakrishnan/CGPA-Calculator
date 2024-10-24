@@ -34,7 +34,7 @@ const StudentCGPA = () => {
       return total + (isNaN(gpa) ? 0 : gpa);
     }, 0);
     const cgpa = data.length > 0 ? totalGPA / data.length : 0; // Avoid division by zero
-    setTotalCGPA(cgpa.toFixed(3)); // Set total CGPA with three decimal places
+    setTotalCGPA(cgpa.toFixed(2)); // Set total CGPA with three decimal places
   };
 
   if (loading) return <div>Loading...</div>; // Show loading state

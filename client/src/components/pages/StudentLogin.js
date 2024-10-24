@@ -17,7 +17,8 @@ const StudentLogin = () => {
 
         try {
             const response = await axios.post(`${baseURL}/student/login`, { rollNo, password });
-            const id = response.data.id; // Now this will have the correct student ID
+            const id = response.data.id; // Get the correct student ID from the response
+            localStorage.setItem('studentId', id); // Store the student ID in local storage
             navigate(`/student/dashboard/${id}`); // Navigate using 'id'
         } catch (error) {
             setError(error.response?.data?.error || 'Login failed.');

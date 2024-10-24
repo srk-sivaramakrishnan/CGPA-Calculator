@@ -1,0 +1,113 @@
+.account-settings-heading {
+    font-size: 26px;
+    color: #333;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.settings-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 100px;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.settings-container .change-password-heading {
+    font-size: 22px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.settings-container .key-icon {
+    margin-right: 8px;
+    color: #AD49E1;
+}
+
+.settings-container .form-group {
+    margin-bottom: 20px;
+}
+
+.settings-container .input-container {
+    position: relative;
+}
+
+.settings-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.settings-container input:focus {
+    border-color: #AD49E1;
+}
+
+.settings-container .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #AD49E1;
+}
+
+.settings-container .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.settings-container .success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.settings-container .submit-button {
+    background-color: #AD49E1;
+    color: white;
+    margin-left: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.settings-container .submit-button:hover {
+    background-color: #9a39c4;
+}
+
+@media only screen and (max-width: 400px) {
+    .settings-container {
+        padding: 30px;
+    }
+
+    .settings-container input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .settings-container .submit-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .account-settings-heading {
+        font-size: 18px;
+        margin: 15px 0;
+    }
+
+    .settings-container .change-password-heading {
+        font-size: 18px;
+    }
+}

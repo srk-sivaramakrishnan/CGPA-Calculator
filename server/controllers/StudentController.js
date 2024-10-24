@@ -268,4 +268,80 @@ exports.getCGPAByStudentId = async (req, res) => {
     }
   };
   
-  
+
+// Function to change student password
+exports.changePassword = async (req, res) => {
+    const studentId = req.params.id; // Get student ID from URL parameters
+    const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
+    try {
+        // Fetch the student by ID
+        const student = await studentModel.getStudentByIdPass(studentId);
+
+        // Check if the student exists
+        if (!student) {
+            return res.status(404).json({ error: 'Student not found.' });
+        }
+
+        // Case 1: Password stored in plain text (legacy case)
+        let passwordMatch;
+        if (student.password.startsWith('$2b$')) {
+            // Case 2: Password is already hashed, use bcrypt to compare
+            passwordMatch = await bcrypt.compare(currentPassword, student.password);
+        } else {
+            // Compare plain-text password
+            passwordMatch = (currentPassword === student.password);
+        }
+
+        // If current password does not match
+        if (!passwordMatch) {
+            return res.status(400).json({ error: 'Current password is incorrect.' });
+        }
+
+        // Ensure newPassword and confirmNewPassword match
+        if (!newPassword || !confirmNewPassword || newPassword !== confirmNewPassword) {
+            return res.status(400).json({ error: 'New passwords do not match.' });
+        }
+
+        // Hash the new password
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+        // Update the password in the database with the hashed password
+        await studentModel.updateStudentPassword(studentId, hashedNewPassword);
+
+        return res.status(200).json({ message: 'Password changed successfully.' });
+    } catch (error) {
+        console.error('Error changing password:', error);
+        return res.status(500).json({ error: 'An error occurred while changing the password.' });
+    }
+};
+
+// Function to track an event
+exports.trackEvent = async (req, res) => {
+    const { event, studentId } = req.body;
+
+    if (!event || !studentId) {
+        return res.status(400).json({ error: 'Event and studentId are required.' });
+    }
+
+    try {
+        const timestamp = new Date(); // Current timestamp
+        await studentModel.saveAnalyticsData({ event, studentId, timestamp });
+        res.status(201).json({ message: 'Event tracked successfully.' });
+    } catch (error) {
+        console.error('Error tracking event:', error);
+        res.status(500).json({ error: 'Failed to track event.' });
+    }
+};
+
+// Function to get analytics data for a specific student
+exports.getAnalyticsByStudentId = async (req, res) => {
+    const studentId = req.params.id; // Get the student ID from the route parameters
+    try {
+        const analyticsData = await studentModel.getAnalyticsDataByStudentId(studentId);
+        res.status(200).json(analyticsData);
+    } catch (error) {
+        console.error('Error fetching analytics for student:', error);
+        res.status(500).json({ error: 'Failed to fetch analytics data for student.' });
+    }
+};

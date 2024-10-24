@@ -38,7 +38,13 @@ router.get('/profile/:student_id', studentController.getStudentDetails);
 // In your route file
 router.get('/profile/cgpa/:id', studentController.getCGPAByStudentId);
 
+// Route for changing student password
+router.put('/change-password/:id', studentController.changePassword);
 
+// Route to track an event
+router.post('/analytics/track', studentController.trackEvent);
 
+// Route to get analytics data for a specific student
+router.get('/analytics/:id', studentController.getAnalyticsByStudentId);
 
 module.exports = router;

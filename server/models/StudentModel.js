@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const pool = require('../config/db'); // Assuming you have a pool connection set up
 
 // Function to find a student by Roll No
@@ -122,7 +123,6 @@ const getStudentProfileById = async (student_id) => {
     }
   };
 
-
   const getCGPAByStudentId = async (student_id) => {
     try {
       const [result] = await pool.query('SELECT cgpa FROM cgpa WHERE student_id = ?', [student_id]);
@@ -132,8 +132,40 @@ const getStudentProfileById = async (student_id) => {
     }
   };
   
-  
 
+// Function to get student by ID along with the password
+const getStudentByIdPass = async (studentId) => {
+  const query = 'SELECT id, password FROM students WHERE id = ?';
+  const [rows] = await pool.query(query, [studentId]);
+
+  if (rows.length === 0) {
+      return null; // Return null if no student is found
+  }
+
+  return rows[0]; // Return the student record (includes password)
+};
+
+  const updateStudentPassword = async (studentId, hashedPassword) => {
+    const query = 'UPDATE students SET password = ? WHERE id = ?';
+    const [result] = await pool.query(query, [hashedPassword, studentId]);
+    return result;
+};
+
+
+
+// Function to save analytics data
+const saveAnalyticsData = async (data) => {
+  const { event, studentId, timestamp } = data;
+  const query = 'INSERT INTO analytics (event, student_id, timestamp) VALUES (?, ?, ?)';
+  await pool.query(query, [event, studentId, timestamp]);
+};
+
+// Function to fetch analytics data for a specific student
+const getAnalyticsDataByStudentId = async (studentId) => {
+  const query = 'SELECT * FROM analytics WHERE student_id = ? ORDER BY timestamp DESC';
+  const [results] = await pool.query(query, [studentId]);
+  return results;
+};
 
 
 module.exports = {
@@ -149,4 +181,9 @@ module.exports = {
     upsertCGPA,
     getStudentProfileById,
     getCGPAByStudentId,
+    getStudentByIdPass,
+    updateStudentPassword,
+    saveAnalyticsData,
+    getAnalyticsDataByStudentId,
+    
 };

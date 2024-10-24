@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartBar, faCalculator, faUser, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChartBar, faCalculator, faUser, faCog, faChartLine, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'; // Added faChartLine for Analytics
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import '../../styles/admin/AdminDashboard.css'; // Assuming you already have this CSS file
@@ -40,6 +40,19 @@ const StudentDashboard = () => {
             <Link to={`/student/dashboard/${id}/profile`}>
               <FontAwesomeIcon icon={faUser} className="icon" />
               {isOpen && <span className="label">Profile</span>}
+            </Link>
+          </li>
+          <li>
+            {/* New Analytics Link */}
+            <Link to={`/student/dashboard/${id}/analytics`}>
+              <FontAwesomeIcon icon={faChartLine} className="icon" />
+              {isOpen && <span className="label">Analytics</span>}
+            </Link>
+          </li>
+          <li>
+            <Link to={`/student/dashboard/${id}/settings`}>
+              <FontAwesomeIcon icon={faCog} className="icon" />
+              {isOpen && <span className="label">Settings</span>}
             </Link>
           </li>
         </ul>
