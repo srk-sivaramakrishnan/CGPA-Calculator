@@ -1,0 +1,44 @@
+.add-students-wrapper {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between input groups */
+}
+
+.form-group-dropdown {
+    width: 101.5%;
+}
+
+.form-group label {
+    display: block; /* Ensures label takes full width */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%; /* Full width for inputs and selects */
+    padding: 8px; /* Space inside the input/select */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #2980b9;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

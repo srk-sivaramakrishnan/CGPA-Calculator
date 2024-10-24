@@ -1,0 +1,90 @@
+
+
+.student-home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px; /* Adjust padding as needed */
+background-color: #fff;
+    height: 100vh; /* Full viewport height */
+}
+
+.header {
+    margin-bottom: 10px; 
+}
+
+.profile-heading {
+    font-size: 28px;
+    font-weight: 600;
+    color: #AD49E1; /* Bright highlight color */
+    margin: 0; /* Remove default margin */
+}
+
+.greeting {
+    font-size: 20px;
+    font-weight: 500;
+    color: black; /* Set greeting text color to black */
+    margin: 0; /* Align to the top */
+}
+
+.name {
+    color: #AD49E1; /* Set name color */
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center; /* Center the profile picture */
+    margin: 20px 0; /* Space between profile and details */
+    width: 100%; /* Full width to allow centering */
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #AD49E1;
+    object-fit: cover;
+}
+
+.details-container {
+    padding: 20px;
+    background-color: #fff; /* Light background for the details section */
+    border-radius: 10px;
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    text-align: left; /* Align content to the left */
+    width: 100%; /* Full width for details container */
+}
+
+.details-container p {
+    font-size: 16px;
+    margin: 10px 0; /* Add top and bottom margin for spacing between paragraphs */
+    color: #333; /* Darker text for readability */
+    line-height: 1.5; /* Better line spacing */
+}
+
+.details-container strong {
+    color: #000; /* Change label color to green */
+}
+
+/* New class for student detail values */
+.student-detail-value {
+    font-weight: 600;
+    color: #AD49E1; /* Change this color to your desired color */
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        margin-left: 0; /* Remove margin on smaller screens */
+    }
+
+    .profile-picture {
+        width: 100px; /* Smaller picture on mobile */
+        height: 100px; /* Smaller picture on mobile */
+    }
+
+    .details-container{
+        width: 300px;
+    }
+}

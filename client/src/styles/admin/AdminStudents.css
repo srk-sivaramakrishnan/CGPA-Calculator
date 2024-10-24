@@ -1,0 +1,78 @@
+.admin-students-container {
+    position: relative;
+    padding: 20px;
+}
+
+.add-student-btn-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.add-student-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-student-button:hover {
+    background-color: #2980b9;
+}
+
+.search-heading {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-container {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-category {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.form-group-search {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+}
+
+.search-category {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 600px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.student-results {
+    margin-top: 20px;
+}
+
+.student-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}

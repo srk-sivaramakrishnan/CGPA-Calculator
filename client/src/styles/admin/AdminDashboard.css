@@ -1,0 +1,181 @@
+/* Basic Reset */
+body, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/* Arrow Button Styles - Positioned in the Top-Right Corner of the Sidebar */
+.arrow-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Circular button */
+  background-color: #f5f5f5; /* Button background color */
+  border: 2px solid #000; /* Border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px; /* Space between arrow and sidebar items */
+}
+
+/* Change the background color when the sidebar is open */
+.sidebar.open .arrow-button {
+  background-color: #f5f5f5; /* Dark background when open */
+}
+
+/* Arrow Icon Styling */
+.arrow-button .icon {
+  color: #000; /* Icon color */
+  font-size: 18px;
+  transition: content 0.3s ease;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Sidebar width when open */
+  height: 100vh;
+  background-color: #AD49E1; /* Dark sidebar background */
+  transition: width 0.3s ease, left 0.3s ease;
+  z-index: 998;
+  padding-top: 100px; /* Added extra padding at the top for the gap */
+  overflow: hidden;
+}
+
+.sidebar.closed {
+  width: 60px; /* Sidebar width when closed */
+}
+
+/* Sidebar Menu Styles */
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Sidebar Icon Styles */
+.sidebar ul li .icon {
+  color: #000; /* Icon color */
+  font-size: 20px;
+  transition: margin-right 0.3s ease;
+}
+
+.sidebar.closed ul li .icon {
+  margin-right: 0; /* No margin when closed */
+}
+
+.sidebar.open ul li .icon {
+  margin-right: 10px;
+}
+
+/* Sidebar Label Styles */
+.sidebar ul li .label {
+  color: #000; /* Label text color */
+  transition: opacity 0.3s ease, width 0.3s ease;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.sidebar.closed ul li .label {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Dashboard Content Styles */
+.dashboard-content {
+  margin-left: 270px; /* Margin to account for open sidebar */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.closed ~ .dashboard-content {
+  margin-left: 70px; /* Adjust content margin when sidebar is closed */
+}
+
+/* Hover Effect for Sidebar Items */
+.sidebar ul li:hover {
+  background-color: #eeeeee; /* Dark hover background */
+  cursor: pointer;
+}
+
+/* Sidebar Link Styles */
+.sidebar ul li a {
+  text-decoration: none;
+  color: #F5F5F5; /* Link text color */
+  font-size: 16px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .sidebar {
+      width: 200px; /* Adjust width for larger tablets and small laptops */
+  }
+
+  .dashboard-content {
+      margin-left: 220px; /* Adjust content margin when sidebar is open */
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+      width: 180px; /* Further reduce width for smaller devices */
+  }
+
+  .dashboard-content {
+      margin-left: 200px; /* Adjust content margin */
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      width: 150px; /* Further adjust width for mobile */
+  }
+
+  .sidebar ul li a {
+      font-size: 14px; /* Smaller font for links */
+  }
+
+  .icon {
+      font-size: 16px; /* Smaller icon size */
+  }
+
+  .dashboard-content {
+      margin-left: 160px; /* Adjust content margin for mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+      width: 100px; /* Minimal width for very small devices */
+  }
+
+  .dashboard-content {
+      margin-left: 110px; /* Adjust content margin */
+  }
+
+  .sidebar ul li {
+      padding: 10px 15px; /* Reduce padding for smaller screens */
+  }
+
+  .sidebar ul li a {
+      font-size: 12px; /* Smaller font size for links */
+  }
+
+  .icon {
+      font-size: 14px; /* Smaller icon size */
+  }
+}

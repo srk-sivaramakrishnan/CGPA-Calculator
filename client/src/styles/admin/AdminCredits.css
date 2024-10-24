@@ -1,0 +1,223 @@
+/* Container Styles */
+.admin-cgpa-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .add-subject-btn-container {
+    margin-bottom: 20px;
+  }
+  
+  .add-subject-button {
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-subject-button:hover {
+    background-color: #1e8449;
+  }
+  
+  /* Input Section */
+  .input-section {
+    margin-bottom: 20px;
+  }
+  
+  .input-section h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #333;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .fetch-subjects-button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .fetch-subjects-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Subject Boxes */
+  .subject-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .subject-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .subject-box:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Subject Details and Actions */
+  .subject-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subject-field {
+    margin-bottom: 10px;
+  }
+  
+  .subject-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .action-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .action-button .faTrash {
+    color: #e74c3c;
+  }
+  
+  .action-button .faEdit {
+    color: #f39c12;
+  }
+  
+  /* Modal Overlay and Container */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .close-modal-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .close-modal-button:hover {
+    color: #e74c3c;
+  }
+  
+  /* Input Group in Modal */
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .save-button, .cancel-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .save-button {
+    background-color: #27ae60;
+    color: white;
+    margin-right: 10px;
+    border: none;
+  }
+  
+  .save-button:hover {
+    background-color: #1e8449;
+  }
+  
+  .cancel-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+  }
+  
+  .cancel-button:hover {
+    background-color: #c0392b;
+  }
+  

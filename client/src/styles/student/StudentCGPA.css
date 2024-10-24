@@ -1,0 +1,136 @@
+.cgpa-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  text-align: left; /* Align the heading to the left */
+  width: 100%; /* Ensure the heading takes full width of the container */
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.gpa-box-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping to next line */
+  gap: 20px;
+  justify-content: space-between; /* Add space between the boxes */
+  width: 100%; /* Ensure boxes are responsive */
+}
+
+.gpa-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%; /* Increased width to 70% */
+  max-width: 600px; /* Increase the max width for better readability */
+}
+
+.gpa-box-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.semester-title {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.gpa-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.gpa-input-container input {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #AD49E1;
+  border-radius: 4px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.edit-icon {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.cgpa-total {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 30px;
+  color: black; /* Set the Total CGPA text color to black */
+}
+
+.cgpa-value {
+  color: #AD49E1; /* Set the dynamic CGPA value color to red */
+}
+
+/* For small screens like mobile phones */
+@media (max-width: 768px) {
+  .gpa-box-container {
+    flex-direction: column; /* Stack boxes vertically on small screens */
+    justify-content: center;
+    gap: 10px; /* Reduce gap between boxes */
+  }
+
+  .gpa-box {
+    width: 100%; /* Full width on small screens */
+    max-width: 100%; /* Remove max width to ensure the box takes full space */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    margin-bottom: 15px;
+  }
+
+  .gpa-input-container input {
+    width: 60px; /* Reduce input size on small screens */
+  }
+
+  .cgpa-total {
+    font-size: 1.2rem; /* Adjust CGPA total font size */
+    margin-top: 20px;
+    width: 100%; /* Ensure total CGPA takes full width */
+    padding: 10px; /* Add padding for visibility */
+    text-align: center; /* Center align */
+    color: black; /* Ensure the color is black */
+  }
+
+  .cgpa-value {
+    color: #AD49E1; /* Ensure dynamic CGPA value is visible in the defined color */
+  }
+}
+
+/* For medium screens like tablets */
+@media (max-width: 1024px) {
+  .gpa-box {
+    width: 95%; /* Slightly reduce box width */
+  }
+
+  h2 {
+    font-size: 1.6rem; /* Slightly adjust heading size */
+  }
+
+  .gpa-input-container input {
+    width: 70px; /* Adjust input size */
+  }
+
+  .cgpa-total {
+    font-size: 1.4rem; /* Adjust CGPA total font size */
+    margin-top: 25px; /* Ensure visibility */
+    padding: 15px; /* Add padding for better visibility */
+    width: 100%; /* Ensure it takes the full width */
+    text-align: center; /* Center align */
+  }
+}
+

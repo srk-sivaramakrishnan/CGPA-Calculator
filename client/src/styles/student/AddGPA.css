@@ -1,0 +1,234 @@
+/* Container styling */
+.gpa-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+/* Heading styles */
+.gpa-container h2 {
+  text-align: left; /* Align to the left */
+  color: #333;
+  margin-bottom: 1rem; /* Add some margin to separate from the inputs */
+}
+
+.gpa-container h3 {
+  text-align: center;
+  color: #333;
+}
+
+/* Input section styling */
+.input-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  flex: 1 1 30%;
+  margin-right: 1rem;
+  margin-bottom: 1rem; /* Ensure space between rows */
+  display: flex;
+  flex-direction: column; /* This ensures the label is on top of the dropdown */
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-align: left; /* Ensures the label is aligned to the left */
+}
+
+/* Select box styling */
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #AD49E1;
+  border-radius: 5px;
+  transition: border 0.3s ease;
+}
+
+select:focus {
+  border: 2px solid #AD49E1;
+  outline: none;
+}
+
+/* Button styling */
+button {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #AD49E1;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #7A1CAC;
+  transform: translateY(-2px);
+}
+
+/* Subject container styling */
+.subjects-container {
+  margin-top: 1rem;
+}
+
+.subjects-container h3 {
+  text-align: left;
+}
+
+.subject-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.subject-info {
+  display: flex;
+  flex-direction: column; /* Arrange subject info vertically */
+}
+
+.subject-name,
+.subject-code {
+  font-weight: 500;
+  color: #AD49E1; /* Set the color for subject name and code */
+}
+
+.grade-dropdown {
+  width: 100px; /* Reduce dropdown width */
+}
+
+.subject-item:hover {
+  background-color: #e9ecef;
+}
+
+/* Results section styling */
+.results-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: #f0f8ff;
+}
+
+/* Modal styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal > div {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+}
+
+.search-results {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.search-result-item {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-result-item:hover {
+  background: #e9ecef;
+}
+
+/* Error and success message styling */
+p {
+  text-align: center;
+}
+
+p[style*="color: red"] {
+  font-weight: bold;
+}
+
+p[style*="color: green"] {
+  font-weight: bold;
+}
+
+/* Button container styles */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Distributes buttons across the width */
+  align-items: center; /* Center align vertically */
+  margin-top: 1rem; /* Add some margin to separate from inputs */
+}
+
+.save-button-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns button to the right */
+  margin-top: 1rem; /* Adds some margin to separate from previous content */
+}
+
+.message {
+  position: fixed; /* Fixed to overlay the entire viewport */
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  z-index: 1000; /* Ensure it's on top of other elements */
+  text-align: center; /* Center text for better visibility */
+  opacity: 0.9; /* Slightly transparent for overlay effect */
+}
+
+
+.success {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}
+
+.back-button {
+  position: absolute; /* Fixed to overlay the entire viewport */
+  top: -30px; /* Distance from the top */
+  left: 0px; /* Distance from the left */
+  padding: 10px;
+  border: none;
+  background-color: transparent; /* No background color */
+  color: #AD49E1; /* Icon color */
+  cursor: pointer;
+  font-size: 16px; /* Font size */
+  z-index: 1000; /* Ensure it's on top of other elements */
+  display: flex; /* Use flex to align icon and text */
+  align-items: center; /* Center vertically */
+}
+
+.back-button i {
+  margin-right: 5px; /* Space between icon and text */
+}
+
+
