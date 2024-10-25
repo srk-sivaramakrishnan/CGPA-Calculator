@@ -32,6 +32,10 @@ router.get('/gpa/:id', studentController.getCalculatedGPA);
 // Route to save CGPA
 router.post('/cgpa', studentController.saveCGPA);
 
+// Route to save semester and GPA
+router.post('/semesterGPA/:id', studentController.saveSemesterGPA);
+
+
 // Route to get student details by ID
 router.get('/profile/:student_id', studentController.getStudentDetails);
 
@@ -41,10 +45,13 @@ router.get('/profile/cgpa/:id', studentController.getCGPAByStudentId);
 // Route for changing student password
 router.put('/change-password/:id', studentController.changePassword);
 
-// Route to track an event
-router.post('/analytics/track', studentController.trackEvent);
+// Route to fetch GPA data using a numeric ID directly from the URL
+router.get('/analytics/:id', studentController.getAnalyticsData);
 
-// Route to get analytics data for a specific student
-router.get('/analytics/:id', studentController.getAnalyticsByStudentId);
+// Route to fetch student's subjects using a numeric ID directly from the URL
+router.get('/backlogs/:id', studentController.getStudentArrear);
+
+// Route to fetch student's subjects using a numeric ID directly from the URL
+router.get('/subjects/backlogs/:id', studentController.getBacklogSubjects);
 
 module.exports = router;

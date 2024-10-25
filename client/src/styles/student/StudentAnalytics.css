@@ -1,0 +1,243 @@
+.analytics-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.analytics-subtitle {
+    font-size: 20px;
+    font-weight: semi-bold;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.dataset-container {
+    margin-top: 20px; /* Space above the dataset */
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Full width */
+}
+
+.dataset-container h4 {
+    font-size: 18px; /* Title font size */
+    color: #333; /* Dark text color */
+}
+
+.dataset-container ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0; /* Remove padding */
+}
+
+.dataset-container li {
+    font-size: 16px; /* Font size for dataset items */
+    color: #555; /* Medium-dark text color */
+}
+
+.backlogs-container {
+    background-color: #f9f9f9; /* Softer light background color */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1390px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    font-size: 16px;
+    color: #333; /* Dark text color */
+    display: flex;
+    justify-content: space-between; /* Align items left and right */
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.backlogs-container h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #444;
+    margin: 0; /* Remove extra margin */
+}
+
+.backlogs-container span {
+    font-weight: bold;
+    color: #d9534f; /* Red color to highlight the backlog count */
+}
+
+.show-subjects-button {
+    background-color: #0088FE;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.show-subjects-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75); /* Darker overlay for stronger focus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease; /* Smooth overlay transition */
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: relative; /* To position close button absolutely */
+    animation: fadeIn 0.4s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.close-modal-button:hover {
+    color: #d9534f; /* Change color on hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Space above the table */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Lighter border */
+    padding: 12px;
+    text-align: left;
+    font-size: 16px; /* Consistent font size */
+}
+
+th {
+    background-color: #f5f5f5; /* Softer header background */
+    color: #333;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fafafa;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: #f7f7f7; /* Alternating row color for clarity */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .analytics-title {
+        font-size: 20px; /* Slightly smaller title for mobile */
+    }
+
+    .analytics-subtitle {
+        font-size: 18px; /* Slightly smaller subtitle for mobile */
+    }
+
+    .pie-chart-container {
+        width: 80%; /* Increase the width for better fit on mobile */
+    }
+
+    .dataset-container h4 {
+        font-size: 16px; /* Smaller dataset title for mobile */
+    }
+
+    .dataset-container li {
+        font-size: 14px; /* Smaller font size for dataset items */
+    }
+
+    .show-subjects-button {
+        padding: 8px 12px; /* Adjust button size for mobile */
+    }
+
+    /* Reduce width of .backlogs-container for tablets */
+    .backlogs-container {
+        width: 90%; /* Set to a narrower width for tablets */
+        max-width: 800px; /* Optionally set a max-width for larger tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .analytics-title {
+        font-size: 18px; /* Further reduce title size for small screens */
+    }
+
+    .analytics-subtitle {
+        font-size: 16px; /* Further reduce subtitle size for small screens */
+    }
+
+    .pie-chart-container {
+        width: 90%; /* Further increase the width for small screens */
+    }
+
+    .dataset-container h4 {
+        font-size: 14px; /* Smaller dataset title for small screens */
+    }
+
+    .dataset-container li {
+        font-size: 12px; /* Smaller font size for dataset items */
+    }
+
+    .show-subjects-button {
+        padding: 6px 10px; /* Further adjust button size for small screens */
+    }
+
+    /* Further reduce width of .backlogs-container for small screens */
+    .backlogs-container {
+        width: 95%; /* Set to a narrower width for smaller screens */
+        max-width: none; /* Remove max-width restriction */
+        padding: 10px; /* Add some padding for better spacing */
+    }
+}
+

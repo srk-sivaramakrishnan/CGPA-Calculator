@@ -97,15 +97,25 @@ const getCalculatedGPAByStudentId = async (studentId) => {
   return results;
 };
 
-// Function to insert or update CGPA for a student
-const upsertCGPA = async (studentId, cgpa) => {
-  const [result] = await pool.query(
-    'INSERT INTO cgpa (student_id, cgpa) VALUES (?, ?) ON DUPLICATE KEY UPDATE cgpa = ?',
-    [studentId, cgpa, cgpa]
-  );
+// Function to insert or update GPA for a student by semester
+const saveStudentSemesterGPA = async (studentId, semester, gpa) => {
+  const query = `
+      INSERT INTO student_semester_gpa (student_id, semester, gpa)
+      VALUES (?, ?, ?)
+      ON DUPLICATE KEY UPDATE gpa = ?;
+  `;
+  const [result] = await pool.query(query, [studentId, semester, gpa, gpa]);
   return result;
 };
 
+// Function to insert or update CGPA for a student
+const upsertCGPA = async (studentId, cgpa) => {
+  const query = `
+      INSERT INTO cgpa (student_id, cgpa) VALUES (?, ?) ON DUPLICATE KEY UPDATE cgpa = ?;
+  `;
+  const [result] = await pool.query(query, [studentId, cgpa, cgpa]);
+  return result;
+};
 
 
 // Home
@@ -151,21 +161,40 @@ const getStudentByIdPass = async (studentId) => {
     return result;
 };
 
-
-
-// Function to save analytics data
-const saveAnalyticsData = async (data) => {
-  const { event, studentId, timestamp } = data;
-  const query = 'INSERT INTO analytics (event, student_id, timestamp) VALUES (?, ?, ?)';
-  await pool.query(query, [event, studentId, timestamp]);
-};
-
-// Function to fetch analytics data for a specific student
-const getAnalyticsDataByStudentId = async (studentId) => {
-  const query = 'SELECT * FROM analytics WHERE student_id = ? ORDER BY timestamp DESC';
+// Function to get CGPA data for a student
+const getStudentCGPAData = async (studentId) => {
+  const query = `
+      SELECT cgpa FROM cgpa
+      WHERE student_id = ?;
+  `;
   const [results] = await pool.query(query, [studentId]);
   return results;
 };
+
+// Function to get the count of U grades for a student
+const getStudentUGradeCount = async (studentId) => {
+  const query = `
+      SELECT COUNT(*) AS uGradeCount 
+      FROM student_subjects 
+      WHERE student_id = ? AND grade = 'U';
+  `;
+  const [results] = await pool.query(query, [studentId]);
+  return results[0].uGradeCount; // Return the U grade count
+};
+
+// Function to get U grade subjects for a student
+const getBacklogSubjects = async (studentId) => {
+  const query = `
+      SELECT semester, subject_code, subject_name, grade 
+      FROM student_subjects 
+      WHERE student_id = ? AND grade = 'U';
+  `;
+  const [results] = await pool.query(query, [studentId]);
+  return results;
+};
+
+
+
 
 
 module.exports = {
@@ -179,11 +208,12 @@ module.exports = {
     deleteStudentSubject,
     getCalculatedGPAByStudentId,
     upsertCGPA,
+    saveStudentSemesterGPA,
     getStudentProfileById,
     getCGPAByStudentId,
     getStudentByIdPass,
     updateStudentPassword,
-    saveAnalyticsData,
-    getAnalyticsDataByStudentId,
-    
+    getStudentCGPAData,
+    getStudentUGradeCount,
+    getBacklogSubjects,
 };

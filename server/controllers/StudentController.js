@@ -211,23 +211,43 @@ exports.getCalculatedGPA = async (req, res) => {
     }
 };
 
-// Controller to insert or update CGPA
+// Controller to save semester and GPA
+exports.saveSemesterGPA = async (req, res) => {
+    const semesterGPAData = req.body; // This will be an array of GPA data
+  
+    try {
+        const results = [];
+        
+        for (const item of semesterGPAData) {
+            const { student_id, semester, gpa } = item; // Destructure the item
+  
+            // Call the model function to insert or update the GPA for the specified semester
+            const result = await studentModel.saveStudentSemesterGPA(student_id, semester, gpa);
+            results.push(result); // Collect results if needed
+        }
+  
+        res.status(200).json({ message: 'Semester GPAs saved successfully', results });
+    } catch (error) {
+        console.error('Error saving semester GPA:', error);
+        res.status(500).json({ error: 'Failed to save semester GPA.' });
+    }
+};
+
+// Controller to save CGPA
 exports.saveCGPA = async (req, res) => {
     const { student_id, cgpa } = req.body;
   
     try {
-      // Ensure the CGPA is updated correctly
-      const result = await studentModel.upsertCGPA(student_id, cgpa);
-      res.status(200).json({ message: 'CGPA updated successfully', id: result.insertId });
+        // Ensure the CGPA is updated correctly
+        const result = await studentModel.upsertCGPA(student_id, cgpa);
+        res.status(200).json({ message: 'CGPA updated successfully', id: result.insertId });
     } catch (error) {
-      console.error('Failed to save CGPA:', error);
-      res.status(500).json({ message: 'Failed to save CGPA', error });
+        console.error('Failed to save CGPA:', error);
+        res.status(500).json({ message: 'Failed to save CGPA', error });
     }
-  };
-
+};
 
  // Home
- 
 
  exports.getStudentDetails = async (req, res) => {
     const { student_id } = req.params; // This should now correctly receive the ID
@@ -316,32 +336,64 @@ exports.changePassword = async (req, res) => {
     }
 };
 
-// Function to track an event
-exports.trackEvent = async (req, res) => {
-    const { event, studentId } = req.body;
-
-    if (!event || !studentId) {
-        return res.status(400).json({ error: 'Event and studentId are required.' });
-    }
+// Controller to fetch CGPA data
+exports.getAnalyticsData = async (req, res) => {
+    const studentId = req.params.id; // Get student ID directly from URL
 
     try {
-        const timestamp = new Date(); // Current timestamp
-        await studentModel.saveAnalyticsData({ event, studentId, timestamp });
-        res.status(201).json({ message: 'Event tracked successfully.' });
+        // Fetch CGPA data
+        const cgpaData = await studentModel.getStudentCGPAData(studentId);
+        
+        // Prepare data for the pie chart
+        const totalCGPA = 10.00; // Set total CGPA constant
+        const studentCGPA = cgpaData[0] ? parseFloat(cgpaData[0].cgpa).toFixed(2) : 0; // Fetch and round student's CGPA to 2 decimal places
+        const remainingCGPA = (totalCGPA - studentCGPA).toFixed(2); // Calculate and format remaining CGPA to 2 decimal places
+
+        // Create the data structure for the pie chart
+        const pieChartData = [
+            { name: 'Current CGPA', value: parseFloat(studentCGPA) }, // Student's CGPA
+            { name: 'Remaining CGPA', value: parseFloat(remainingCGPA) } // Remaining CGPA
+        ];
+
+        res.status(200).json({ pieChartData });
     } catch (error) {
-        console.error('Error tracking event:', error);
-        res.status(500).json({ error: 'Failed to track event.' });
+        console.error('Error fetching CGPA data:', error);
+        res.status(500).json({ message: 'Failed to fetch CGPA data', error });
     }
 };
 
-// Function to get analytics data for a specific student
-exports.getAnalyticsByStudentId = async (req, res) => {
-    const studentId = req.params.id; // Get the student ID from the route parameters
+// Controller to fetch U grade count
+exports.getStudentArrear = async (req, res) => {
+    const studentId = req.params.id; // Get student ID directly from URL
+
     try {
-        const analyticsData = await studentModel.getAnalyticsDataByStudentId(studentId);
-        res.status(200).json(analyticsData);
+        // Fetch U grade count for the student
+        const uGradeCount = await studentModel.getStudentUGradeCount(studentId);
+
+        res.status(200).json({ uGradeCount });
     } catch (error) {
-        console.error('Error fetching analytics for student:', error);
-        res.status(500).json({ error: 'Failed to fetch analytics data for student.' });
+        console.error('Error fetching student U grade count:', error);
+        res.status(500).json({ message: 'Failed to fetch U grade count', error });
+    }
+};
+
+
+// Controller to fetch student's subjects
+exports.getBacklogSubjects = async (req, res) => {
+    const studentId = req.params.id; // Get student ID directly from URL
+
+    try {
+        // Fetch subjects for the student
+        const subjects = await studentModel.getBacklogSubjects(studentId);
+
+        if (subjects.length === 0) {
+            return res.status(404).json({ message: 'No subjects found for this student.' });
+        }
+
+        // Respond with the subjects data
+        res.status(200).json({ subjects });
+    } catch (error) {
+        console.error('Error fetching student subjects:', error);
+        res.status(500).json({ message: 'Failed to fetch student subjects', error });
     }
 };

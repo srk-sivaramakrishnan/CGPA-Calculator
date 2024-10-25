@@ -10,6 +10,8 @@ const StudentCGPA = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const [totalCGPA, setTotalCGPA] = useState(0); // State for total CGPA
   const [error, setError] = useState(null); // Error handling
+  const [showTotalCGPA, setShowTotalCGPA] = useState(false); // State to manage Total CGPA visibility
+  const [isGPAStored, setIsGPAStored] = useState(false); // State to manage button visibility
 
   useEffect(() => {
     const fetchGPAData = async () => {
@@ -34,7 +36,28 @@ const StudentCGPA = () => {
       return total + (isNaN(gpa) ? 0 : gpa);
     }, 0);
     const cgpa = data.length > 0 ? totalGPA / data.length : 0; // Avoid division by zero
-    setTotalCGPA(cgpa.toFixed(2)); // Set total CGPA with three decimal places
+    setTotalCGPA(cgpa.toFixed(2)); // Set total CGPA with two decimal places
+  };
+
+  // Submit updated GPA data
+  const handleSubmit = async () => {
+    try {
+      const semesterGPAData = gpaData.map(data => ({
+        student_id: id, // Include student ID
+        semester: data.semester,
+        gpa: data.calculatedGPA,
+      }));
+  
+      await axios.post(`${baseURL}/student/semesterGPA/${id}`, semesterGPAData); // Update GPA data on the backend
+      
+      // After storing the GPA data, store the CGPA
+      await axios.post(`${baseURL}/student/cgpa`, { student_id: id, cgpa: totalCGPA });
+
+      setShowTotalCGPA(true); // Show Total CGPA after calculation
+      setIsGPAStored(true); // Set GPA stored to true to hide the button
+    } catch (error) {
+      setError('Failed to calculate CGPA'); // Error handling
+    }
   };
 
   if (loading) return <div>Loading...</div>; // Show loading state
@@ -55,9 +78,7 @@ const StudentCGPA = () => {
                   <input
                     type="number"
                     value={parseFloat(semesterData.calculatedGPA).toFixed(3)} // Display GPA with three decimal places
-                    step="0.001"
-                    min="0"
-                    disabled // Disable the input to prevent editing
+                    readOnly // Makes input non-editable
                   />
                 </div>
               </div>
@@ -67,11 +88,16 @@ const StudentCGPA = () => {
           <p>No GPA data available.</p>
         )}
       </div>
-      <div className="cgpa-total">
-  <h3>
-    Total CGPA: <span className="cgpa-value">{totalCGPA}</span>
-  </h3> 
-</div>
+      {showTotalCGPA && ( // Conditionally render Total CGPA based on state
+        <div className="cgpa-total">
+          <h3>
+            Total CGPA: <span className="cgpa-value">{totalCGPA}</span>
+          </h3>
+        </div>
+      )}
+      {!isGPAStored && ( // Hide button if GPA has been stored
+        <button onClick={handleSubmit}>Calculate CGPA</button>
+      )}
     </div>
   );
 };
